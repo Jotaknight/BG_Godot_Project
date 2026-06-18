@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dy80kl2hys17q"]
+
+[ext_resource type="PackedScene" uid="uid://ddgonpym5jcig" path="res://GUI/DeckEditScene/OrderButton.tscn" id="1_8eq5h"]
+[ext_resource type="Script" uid="uid://ysw7o4kq3k4r" path="res://Scripts/GUI/DeckEditScene/CardListItemHeader.gd" id="1_o37j0"]
+
+[node name="CardListItemHeader" type="HBoxContainer" unique_id=1756712953]
+script = ExtResource("1_o37j0")
+
+[node name="Name" parent="." unique_id=2028674348 instance=ExtResource("1_8eq5h")]
+layout_mode = 2
+
+[node name="Type" parent="." unique_id=741933409 instance=ExtResource("1_8eq5h")]
+layout_mode = 2
+
+[node name="Cost" parent="." unique_id=1814664028 instance=ExtResource("1_8eq5h")]
+layout_mode = 2
+
+[node name="Skills" parent="." unique_id=2116041339 instance=ExtResource("1_8eq5h")]
+layout_mode = 2
+
+[node name="Level" parent="." unique_id=1888688124 instance=ExtResource("1_8eq5h")]
+layout_mode = 2

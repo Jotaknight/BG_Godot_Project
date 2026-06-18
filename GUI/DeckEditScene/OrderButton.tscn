@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ddgonpym5jcig"]
+
+[ext_resource type="Script" uid="uid://o7bxq8aqqsio" path="res://GUI/DeckEditScene/OrderButton.gd" id="1_a144p"]
+
+[node name="OrderButton" type="Button" unique_id=2028674348]
+script = ExtResource("1_a144p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1953277589]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=201772969]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1281580144]
+layout_mode = 2

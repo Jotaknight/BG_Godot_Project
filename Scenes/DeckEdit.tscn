@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://b80smv62mti4"]
+
+[ext_resource type="Script" uid="uid://dd0ytvpjwyso3" path="res://Scripts/Scenes/DeckEdit.gd" id="1_tjvms"]
+[ext_resource type="PackedScene" uid="uid://dy80kl2hys17q" path="res://GUI/DeckEditScene/CardListItemHeader.tscn" id="2_w7vqj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmryt"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Control" type="Control" unique_id=1665537435]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tjvms")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2116545770]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 139.0
+offset_right = 965.0
+offset_bottom = 939.0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=646589380]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fmryt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=754704228]
+layout_mode = 2
+
+[node name="CardListHeader" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1756712953 instance=ExtResource("2_w7vqj")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=308014917]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1506180461]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardList" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=255295599]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="ExitButton" type="Button" parent="." unique_id=1744841482]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.702
+anchor_top = 0.915
+anchor_right = 0.702
+anchor_bottom = 0.915
+offset_left = -106.84
+offset_top = -36.2
+offset_right = 108.16
+offset_bottom = 36.8
+theme_override_font_sizes/font_size = 30
+text = "EXIT"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

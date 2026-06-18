@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dy0gjg6mjtmvn"]
+
+[ext_resource type="Script" uid="uid://cw7w37crj5y2n" path="res://Scripts/GUI/DeckEditScene/CardListItem.gd" id="1_60lsj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rhno"]
+bg_color = Color(0.5, 0.5, 0.5, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mc5oq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwmqw"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6tej"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="CardListItem" type="Button" unique_id=36605452]
+custom_minimum_size = Vector2(0, 23)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1918.0
+offset_bottom = -1057.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_7rhno")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mc5oq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iwmqw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y6tej")
+script = ExtResource("1_60lsj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=198243397]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 23.0
+
+[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=347143134]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer" unique_id=1254050231]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Type" type="Label" parent="HBoxContainer" unique_id=834594042]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="Cost" type="Label" parent="HBoxContainer" unique_id=192146507]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Skills" type="HBoxContainer" parent="HBoxContainer" unique_id=1265859560]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Level" type="Label" parent="HBoxContainer" unique_id=1919905016]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
