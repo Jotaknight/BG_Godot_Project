@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dad1lbli8knur"]
+[gd_scene format=3 uid="uid://dad1lbli8knur"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_speli"]
 
-[node name="MainMenuButton" type="Button"]
+[node name="MainMenuButton" type="Button" unique_id=1488022796]
 theme_override_colors/font_color = Color(0.745098, 0.745098, 0.745098, 1)
+theme_override_colors/font_focus_color = Color(0.87451, 0.988235, 0.843137, 1)
 theme_override_colors/font_pressed_color = Color(0.431373, 0.670588, 0.360784, 1)
 theme_override_colors/font_hover_color = Color(0.87451, 0.988235, 0.843137, 1)
-theme_override_colors/font_focus_color = Color(0.87451, 0.988235, 0.843137, 1)
 theme_override_font_sizes/font_size = 35
 theme_override_styles/focus = SubResource("StyleBoxEmpty_speli")
 flat = true
