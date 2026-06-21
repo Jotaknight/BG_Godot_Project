@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dy0gjg6mjtmvn"]
 
-[ext_resource type="Script" uid="uid://cw7w37crj5y2n" path="res://Scripts/GUI/DeckEditScene/CardListItem.gd" id="1_60lsj"]
+[ext_resource type="Script" uid="uid://bq15uola4xg5u" path="res://Scripts/GUI/DeckEditScene/CardListItem.cs" id="1_60lsj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rhno"]
 bg_color = Color(0.5, 0.5, 0.5, 1)

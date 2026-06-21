@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ddgonpym5jcig"]
 
-[ext_resource type="Script" uid="uid://o7bxq8aqqsio" path="res://GUI/DeckEditScene/OrderButton.gd" id="1_a144p"]
+[ext_resource type="Script" uid="uid://u5p22nyuythv" path="res://Scripts/GUI/DeckEditScene/OrderButton.cs" id="1_a144p"]
 
 [node name="OrderButton" type="Button" unique_id=2028674348]
 script = ExtResource("1_a144p")
