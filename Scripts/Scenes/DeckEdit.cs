@@ -2,7 +2,6 @@ using Godot;
 using Godot.Collections;
 using System.Data.SQLite;
 
-
 public partial class DeckEdit : Control
 {
 	private VBoxContainer _cardList;
@@ -53,9 +52,9 @@ public partial class DeckEdit : Control
 		}
 	}
 
-	private Dictionary<string, Variant> ReaderToDict(SQLiteDataReader reader)
+	private Godot.Collections.Dictionary<string, Variant> ReaderToDict(SQLiteDataReader reader)
 	{
-		var dict = new Dictionary<string, Variant>();
+		var dict = new Godot.Collections.Dictionary<string, Variant>();
 		for (int i = 0; i < reader.FieldCount; i++)
 		{
 			if (reader.IsDBNull(i))
@@ -79,7 +78,16 @@ public partial class DeckEdit : Control
 		return dict;
 	}
 
-	private void LoadCard(Dictionary<string, Variant> card)
+	public override void _ExitTree()
+	{
+		if (_db != null && _db.State == System.Data.ConnectionState.Open)
+		{
+			_db.Close();
+			_db.Dispose();
+		}
+	}
+
+	private void LoadCard(Godot.Collections.Dictionary<string, Variant> card)
 	{
 		var newRow = _cardListItemScene.Instantiate<CardListItem>();
 
@@ -150,23 +158,8 @@ public partial class DeckEdit : Control
 		var mousePosition = GetViewport().GetMousePosition() + _mousePositionOffset;
 		var previewSize = _currentPreview.GetTextureSize();
 		var screenSize = GetViewportRect().Size;
-		var newPosition = CalculatePositionPreview(mousePosition, previewSize, screenSize);
+		var newPosition = PreviewPositionCalculator.Calculate(mousePosition, previewSize, screenSize);
 		_currentPreview.GlobalPosition = newPosition;
 	}
 
-	private Vector2 CalculatePositionPreview(Vector2 mousePosition, Vector2 previewSize, Vector2 screenSize)
-	{
-		var newPosition = mousePosition;
-
-		if (newPosition.Y < screenSize.Y/2)
-		{
-			float overflowY = Mathf.Max(0, newPosition.Y + previewSize.Y - screenSize.Y);
-			newPosition.Y -= overflowY;
-		}
-		else
-		{
-			newPosition.Y = Mathf.Max(0, newPosition.Y - previewSize.Y);
-		}
-		return newPosition;
-	}
 }

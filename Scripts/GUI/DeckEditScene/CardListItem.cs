@@ -26,7 +26,7 @@ public partial class CardListItem : Button
 	private HBoxContainer _skillsContainer;
 	private Label _levelLabel;
 
-	private Timer _hoverTimer;
+	private Godot.Timer _hoverTimer;
 
 	public override void _Ready()
 	{
@@ -42,7 +42,7 @@ public partial class CardListItem : Button
 		FocusEntered += OnFocus;
 		FocusExited += OnFocusExit;
 
-		_hoverTimer = new Timer();
+		_hoverTimer = new Godot.Timer();
 		AddChild(_hoverTimer);
 		_hoverTimer.OneShot = true;
 		_hoverTimer.WaitTime = 1.0;

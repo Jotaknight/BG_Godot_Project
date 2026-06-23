@@ -16,6 +16,6 @@ public partial class CardPreview : Control
 
 	public Vector2 GetTextureSize()
 	{
-		return _textureRect.Texture.GetSize();
+		return _textureRect.Texture?.GetSize() ?? Vector2.Zero;
 	}
 }
