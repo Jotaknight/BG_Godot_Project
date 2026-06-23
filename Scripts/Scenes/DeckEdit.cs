@@ -10,8 +10,8 @@ public partial class DeckEdit : Control
 	private PackedScene _cardListItemScene = GD.Load<PackedScene>("res://GUI/DeckEditScene/CardListItem.tscn");
 	private PackedScene _cardPreviewScene = GD.Load<PackedScene>("res://GUI/DeckEditScene/CardPreview.tscn");
 
-	private SQLiteConnection _connection;
-	private string _dataPath = "res://Resources//ahlcgdb";
+	private SQLiteConnection _db;
+	private const string DataPath = "res://Resources/ahlcgdb";
 
 	private CardPreview _currentPreview;
 	private Vector2 _mousePositionOffset = new Vector2(20, 10);
@@ -36,36 +36,55 @@ public partial class DeckEdit : Control
 
 	private void LoadData()
 	{
-		string connectionString = $"Data Source={_dataPath}";
-		_connection = new SQLiteConnection(connectionString);
-		_connection.Open();
+		string absolutePath = ProjectSettings.GlobalizePath(DataPath);
+		string connectionString = $"Data Source={absolutePath}.db;Version=3;";
+		_db = new System.Data.SQLite.SQLiteConnection(connectionString);
+		_db.Open();
 
 		string query = "SELECT * FROM 'Investigator Cards'";
 
-		using var command = new SQLiteCommand(query, _connection);
+		using var command = new SQLiteCommand(query, _db);
 		using var reader = command.ExecuteReader();
 
 		while (reader.Read())
 		{
-			var item = new Godot.Collections.Dictionary();
-
-			for (int i = 0; i < reader.FieldCount; i++)
-			{
-				string key = reader.GetName(i);
-				object rawValue = reader.IsDBNull(i) ? null : reader.GetValue(i);
-				item[key] = Variant.From(rawValue);
-			}
-
-			LoadCard(item);
+			var card = ReaderToDict(reader);
+			LoadCard(card);
 		}
 	}
 
-	private void LoadCard(Dictionary item)
+	private Dictionary<string, Variant> ReaderToDict(SQLiteDataReader reader)
+	{
+		var dict = new Dictionary<string, Variant>();
+		for (int i = 0; i < reader.FieldCount; i++)
+		{
+			if (reader.IsDBNull(i))
+			{
+				dict[reader.GetName(i)] = new Variant();
+				continue;
+			}
+
+			Variant value = reader.GetFieldType(i).Name switch
+			{
+				"String"  => Variant.From(reader.GetString(i)),
+				"Int64"   => Variant.From(reader.GetInt64(i)),
+				"Int32"   => Variant.From(reader.GetInt32(i)),
+				"Double"  => Variant.From(reader.GetDouble(i)),
+				"Boolean" => Variant.From(reader.GetBoolean(i)),
+				_         => Variant.From(reader.GetString(i)) // fallback a string
+			};
+
+			dict[reader.GetName(i)] = value;
+		}
+		return dict;
+	}
+
+	private void LoadCard(Dictionary<string, Variant> card)
 	{
 		var newRow = _cardListItemScene.Instantiate<CardListItem>();
 
 		var cardData = new CardData();
-		cardData.SetupFromDB(item);
+		cardData.SetupFromDB(card);
 
 		newRow.Setup(cardData);
 

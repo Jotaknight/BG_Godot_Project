@@ -11,10 +11,9 @@ public partial class CardData : RefCounted
 	public int? Cost { get; set; }
 	public Skills Skills { get; set; }
 
-	public void SetupFromDB(Dictionary item)
+	public void SetupFromDB(Godot.Collections.Dictionary<string, Variant> item)
 	{
 		Id = (int)item["CARD_ID"];
-
 		Name = item["CARD_NAME"].AsString();
 		Class = item["CARD_CLASS"].AsString();
 
@@ -27,13 +26,6 @@ public partial class CardData : RefCounted
 		Cost = item["CARD_COST"].VariantType == Variant.Type.Nil
 			? null
 			: (int)item["CARD_COST"];
-
-		Id = (int)item["id"];
-		Name = (string)item["name"];
-		Class = (string)item["class"];
-		Level = item.ContainsKey("level") ? (int?)item["level"] : null;
-		Type = (string)item["type"];
-		Cost = item.ContainsKey("cost") ? (int?)item["cost"] : null;
 
 		Skills = new Skills();
 		Skills.Willpower = (int)item["SKILL_WILLPOWER"];

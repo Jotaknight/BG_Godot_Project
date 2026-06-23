@@ -68,4 +68,4 @@ offset_bottom = 36.8
 theme_override_font_sizes/font_size = 30
 text = "EXIT"
 
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPressed"]
