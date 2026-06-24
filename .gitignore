@@ -1,3 +1,19 @@
-# Godot 4+ specific ignores
+# Godot
 .godot/
 /android/
+
+# Build outputs
+Tests/bin/
+Tests/obj/
+
+# Godot mono build
+.godot/mono/
+
+# Ficheros temporales de escenas
+Scenes/*.tmp
+
+# VSCode
+.vscode/
+
+# Ficheros generados por Godot (no necesarios en repo)
+**/*.uid

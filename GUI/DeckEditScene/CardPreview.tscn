@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dxqr2aohihsrl"]
 
-[ext_resource type="Script" uid="uid://0u1s8uojxp62" path="res://Scripts/GUI/DeckEditScene/CardPreview.gd" id="1_etp0j"]
-[ext_resource type="Script" uid="uid://d0srtam7q72u6" path="res://Scripts/GUI/DeckEditScene/CardListItemHeader.gd" id="2_1bhi6"]
+[ext_resource type="Script" uid="uid://dilfccd3cjud2" path="res://Scripts/GUI/DeckEditScene/CardPreview.cs" id="1_1bhi6"]
 
 [node name="CardPreview" type="Control" unique_id=680294040]
 layout_mode = 3
@@ -11,10 +10,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_etp0j")
+script = ExtResource("1_1bhi6")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=741733473]
 custom_minimum_size = Vector2(423, 600)
 layout_mode = 0
 stretch_mode = 5
-script = ExtResource("2_1bhi6")

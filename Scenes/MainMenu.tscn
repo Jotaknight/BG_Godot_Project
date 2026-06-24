@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://bol5nb74rm0kk"]
+[gd_scene format=3 uid="uid://bol5nb74rm0kk"]
 
-[ext_resource type="Script" path="res://Scripts/Scenes/MainMenu.gd" id="1_xce57"]
+[ext_resource type="Script" uid="uid://cgavx4vaixytt" path="res://Scripts/Scenes/MainMenu.cs" id="1_df05h"]
 [ext_resource type="Texture2D" uid="uid://b4coudgtr0dwa" path="res://Resources/Images/Backgrounds/mainmenu.jpg" id="2_1j5aw"]
 [ext_resource type="Texture2D" uid="uid://crdbaq28q76de" path="res://Resources/Images/Sprites/arkham_logo.png" id="3_q1fcq"]
 [ext_resource type="AudioStream" uid="uid://086qlx0tf88w" path="res://Resources/Music/01_TitleScreen.mp3" id="4_mcoxp"]
 [ext_resource type="PackedScene" uid="uid://dad1lbli8knur" path="res://GUI/MainMenuScene/MainMenuButton.tscn" id="5_deosi"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1114842160]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xce57")
+script = ExtResource("1_df05h")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1309959331]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ grow_vertical = 2
 texture = ExtResource("2_1j5aw")
 stretch_mode = 6
 
-[node name="Title" type="TextureRect" parent="."]
+[node name="Title" type="TextureRect" parent="." unique_id=1193779291]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -37,7 +37,7 @@ grow_horizontal = 2
 texture = ExtResource("3_q1fcq")
 stretch_mode = 6
 
-[node name="ButtonList" type="VBoxContainer" parent="."]
+[node name="ButtonList" type="VBoxContainer" parent="." unique_id=143601401]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -51,31 +51,26 @@ offset_bottom = 207.78
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NewCampaignButton" parent="ButtonList" instance=ExtResource("5_deosi")]
+[node name="NewCampaignButton" parent="ButtonList" unique_id=1967726939 instance=ExtResource("5_deosi")]
 layout_mode = 2
 text = "Nueva campaña"
 
-[node name="ContinueCampaignButton" parent="ButtonList" instance=ExtResource("5_deosi")]
+[node name="ContinueCampaignButton" parent="ButtonList" unique_id=1155900262 instance=ExtResource("5_deosi")]
 layout_mode = 2
 text = "Continuar campaña"
 
-[node name="DeckBuildingButton" parent="ButtonList" instance=ExtResource("5_deosi")]
+[node name="DeckBuildingButton" parent="ButtonList" unique_id=211485203 instance=ExtResource("5_deosi")]
 layout_mode = 2
 text = "Editor de mazos"
 
-[node name="OptionsButton" parent="ButtonList" instance=ExtResource("5_deosi")]
+[node name="OptionsButton" parent="ButtonList" unique_id=1091008486 instance=ExtResource("5_deosi")]
 layout_mode = 2
 text = "Opciones"
 
-[node name="ExitButton" parent="ButtonList" instance=ExtResource("5_deosi")]
+[node name="ExitButton" parent="ButtonList" unique_id=1748946153 instance=ExtResource("5_deosi")]
 layout_mode = 2
 text = "Salir"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=379860970]
 stream = ExtResource("4_mcoxp")
 autoplay = true
-
-[connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="ready" from="ButtonList" to="." method="_on_button_list_ready"]
-[connection signal="pressed" from="ButtonList/DeckBuildingButton" to="." method="_on_deck_building_button_pressed"]
-[connection signal="pressed" from="ButtonList/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b80smv62mti4"]
 
-[ext_resource type="Script" uid="uid://dd0ytvpjwyso3" path="res://Scripts/Scenes/DeckEdit.gd" id="1_tjvms"]
+[ext_resource type="Script" uid="uid://rrywflwcbf2p" path="res://Scripts/Scenes/DeckEdit.cs" id="1_w7vqj"]
 [ext_resource type="PackedScene" uid="uid://dy80kl2hys17q" path="res://GUI/DeckEditScene/CardListItemHeader.tscn" id="2_w7vqj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmryt"]
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_tjvms")
+script = ExtResource("1_w7vqj")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2116545770]
 layout_mode = 0
@@ -68,4 +68,4 @@ offset_bottom = 36.8
 theme_override_font_sizes/font_size = 30
 text = "EXIT"
 
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPressed"]
