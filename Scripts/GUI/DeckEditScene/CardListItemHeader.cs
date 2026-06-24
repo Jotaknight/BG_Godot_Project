@@ -18,10 +18,18 @@ public partial class CardListItemHeader : HBoxContainer
 		_skillsButton = GetNode<OrderButton>("Skills");
 		_levelButton = GetNode<OrderButton>("Level");
 
+		_nameButton.CustomMinimumSize = new Vector2(CardListLayout.SpacerWidth + CardListLayout.NameWidth, 0);
+		_typeButton.CustomMinimumSize = new Vector2(CardListLayout.TypeWidth, 0);
+		_costButton.CustomMinimumSize = new Vector2(CardListLayout.CostWidth, 0);
+		_skillsButton.CustomMinimumSize = new Vector2(CardListLayout.SkillsWidth, 0);
+		_levelButton.CustomMinimumSize = new Vector2(CardListLayout.LevelWidth, 0);
+
 		_nameButton.Setup("Name");
 		_typeButton.Setup("Type");
 		_costButton.Setup("Cost");
 		_skillsButton.Setup("Skills");
 		_levelButton.Setup("Level");
+
+		
 	}
 }

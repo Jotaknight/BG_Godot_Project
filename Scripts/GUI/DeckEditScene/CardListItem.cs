@@ -47,6 +47,16 @@ public partial class CardListItem : Button
 		_hoverTimer.OneShot = true;
 		_hoverTimer.WaitTime = 1.0;
 		_hoverTimer.Timeout += OnHoverTimeout;
+
+		var hbox = GetNode<HBoxContainer>("HBoxContainer");
+		hbox.CustomMinimumSize = new Vector2(0, CardListLayout.RowHeight);
+
+		GetNode<Control>("HBoxContainer/Spacer").CustomMinimumSize = new Vector2(CardListLayout.SpacerWidth, 0);
+		GetNode<Label>("HBoxContainer/Name").CustomMinimumSize = new Vector2(CardListLayout.NameWidth, 0);
+		GetNode<Label>("HBoxContainer/Type").CustomMinimumSize = new Vector2(CardListLayout.TypeWidth, 0);
+		GetNode<Label>("HBoxContainer/Cost").CustomMinimumSize = new Vector2(CardListLayout.CostWidth, 0);
+		GetNode<HBoxContainer>("HBoxContainer/Skills").CustomMinimumSize = new Vector2(CardListLayout.SkillsWidth, 0);
+		GetNode<Label>("HBoxContainer/Level").CustomMinimumSize = new Vector2(CardListLayout.LevelWidth, 0);
 	}
 
 	public async void Setup(CardData data)
