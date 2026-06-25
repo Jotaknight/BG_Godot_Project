@@ -28,9 +28,13 @@ public partial class DeckEdit : Control
 		AddChild(_currentPreview);
 		_currentPreview.Visible = false;
 
-		var cardListItemHeader = GD.Load<PackedScene>("res://GUI/DeckEditScene/CardListItemHeader.tscn");
-		var headerInstance = cardListItemHeader.Instantiate<CardListItemHeader>();
-		//headerInstance.Setup();
+		var _cardListItemHeader = GetNode<CardListItemHeader>("MarginContainer/PanelContainer/VBoxContainer/CardListHeader");
+
+		_cardListItemHeader.OrderChangeOnName += OnOrderChangeOnName;
+		_cardListItemHeader.OrderChangeOnType += OnOrderChangeOnType;
+		_cardListItemHeader.OrderChangeOnCost += OnOrderChangeOnCost;
+		_cardListItemHeader.OrderChangeOnSkills += OnOrderChangeOnSkills;
+		_cardListItemHeader.OrderChangeOnLevel += OnOrderChangeOnLevel;
 	}
 
 	private void LoadData()
@@ -162,4 +166,28 @@ public partial class DeckEdit : Control
 		_currentPreview.GlobalPosition = newPosition;
 	}
 
+	private void OnOrderChangeOnName(bool ascending)
+	{
+		GD.Print($"Order change on Name: {(ascending ? "Ascending" : "Descending")}");
+	}
+
+	private void OnOrderChangeOnType(bool ascending)
+	{
+		GD.Print($"Order change on Type: {(ascending ? "Ascending" : "Descending")}");
+	}
+
+	private void OnOrderChangeOnCost(bool ascending)
+	{
+		GD.Print($"Order change on Cost: {(ascending ? "Ascending" : "Descending")}");
+	}
+
+	private void OnOrderChangeOnSkills(bool ascending)
+	{
+		GD.Print($"Order change on Skills: {(ascending ? "Ascending" : "Descending")}");
+	}
+
+	private void OnOrderChangeOnLevel(bool ascending)
+	{
+		GD.Print($"Order change on Level: {(ascending ? "Ascending" : "Descending")}");
+	}
 }

@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class CardListItemHeader : HBoxContainer
 {
@@ -7,6 +8,14 @@ public partial class CardListItemHeader : HBoxContainer
 	private OrderButton _costButton;
 	private OrderButton _skillsButton;
 	private OrderButton _levelButton;
+
+	private (OrderButton button, bool ascending)? _currentOrder = null;
+
+	public event Action<bool> OrderChangeOnName;
+	public event Action<bool> OrderChangeOnType;
+	public event Action<bool> OrderChangeOnCost;
+	public event Action<bool> OrderChangeOnSkills;
+	public event Action<bool> OrderChangeOnLevel;
 
 	public override void _Ready()
 	{
@@ -30,6 +39,56 @@ public partial class CardListItemHeader : HBoxContainer
 		_skillsButton.Setup("Skills");
 		_levelButton.Setup("Level");
 
-		
+		_nameButton.ButtonClicked += OnOrderButtonClicked;
+		_typeButton.ButtonClicked += OnOrderButtonClicked;
+		_costButton.ButtonClicked += OnOrderButtonClicked;
+		_skillsButton.ButtonClicked += OnOrderButtonClicked;
+		_levelButton.ButtonClicked += OnOrderButtonClicked;
+	}
+
+	public void OnOrderButtonClicked(OrderButton button)
+	{
+		if (_currentOrder.HasValue && _currentOrder.Value.button == button)
+		{
+			_currentOrder = (_currentOrder.Value.button, !_currentOrder.Value.ascending);
+			_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '^', 'v') + (_currentOrder.Value.ascending ? " ^" : " v");
+		}
+		else
+		{
+			if (_currentOrder.HasValue)
+			{
+				_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '^', 'v');
+			}
+
+			_currentOrder = (button, true);
+			//_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '▲', '▼') + " ▲";
+			_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '^', 'v') + " ^";
+		}
+
+		SendOrderChangeEvent();
+	}
+
+	private void SendOrderChangeEvent()
+	{
+		if (_currentOrder.Value.button == _nameButton)
+		{
+			OrderChangeOnName?.Invoke(_currentOrder.Value.ascending);
+		}
+		else if (_currentOrder.Value.button == _typeButton)
+		{
+			OrderChangeOnType?.Invoke(_currentOrder.Value.ascending);
+		}
+		else if (_currentOrder.Value.button == _costButton)
+		{
+			OrderChangeOnCost?.Invoke(_currentOrder.Value.ascending);
+		}
+		else if (_currentOrder.Value.button == _skillsButton)
+		{	
+			OrderChangeOnSkills?.Invoke(_currentOrder.Value.ascending);
+		}
+		else if (_currentOrder.Value.button == _levelButton)
+		{
+			OrderChangeOnLevel?.Invoke(_currentOrder.Value.ascending);
+		}
 	}
 }
