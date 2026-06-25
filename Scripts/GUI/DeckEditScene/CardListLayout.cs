@@ -7,4 +7,5 @@ public static class CardListLayout
     public const float SkillsWidth = 70;
     public const float LevelWidth = 65;
     public const float RowHeight = 23;
+    public const float HeaderHeight = 37;
 }

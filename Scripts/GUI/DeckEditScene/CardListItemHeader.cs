@@ -21,6 +21,8 @@ public partial class CardListItemHeader : HBoxContainer
 	{
 		base._Ready();
 
+		CustomMinimumSize = new Vector2(0, CardListLayout.HeaderHeight);
+	
 		_nameButton = GetNode<OrderButton>("Name");
 		_typeButton = GetNode<OrderButton>("Type");
 		_costButton = GetNode<OrderButton>("Cost");
@@ -51,18 +53,17 @@ public partial class CardListItemHeader : HBoxContainer
 		if (_currentOrder.HasValue && _currentOrder.Value.button == button)
 		{
 			_currentOrder = (_currentOrder.Value.button, !_currentOrder.Value.ascending);
-			_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '^', 'v') + (_currentOrder.Value.ascending ? " ^" : " v");
+			_currentOrder.Value.button.SetAscending(_currentOrder.Value.ascending);
 		}
 		else
 		{
 			if (_currentOrder.HasValue)
 			{
-				_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '^', 'v');
+				_currentOrder.Value.button.ClearIcon();
 			}
 
 			_currentOrder = (button, true);
-			//_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '▲', '▼') + " ▲";
-			_currentOrder.Value.button.Text = _currentOrder.Value.button.Text.TrimEnd(' ', '^', 'v') + " ^";
+			_currentOrder.Value.button.SetAscending(true);
 		}
 
 		SendOrderChangeEvent();

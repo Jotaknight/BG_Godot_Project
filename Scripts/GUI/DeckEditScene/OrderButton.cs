@@ -8,6 +8,8 @@ public partial class OrderButton : Button
 
 	private Texture2D _ascendingIcon;
 	private Texture2D _descendingIcon;
+	private Label _label;
+	private TextureRect _icon;
 
 	public override void _Ready()
 	{
@@ -16,12 +18,15 @@ public partial class OrderButton : Button
 		_ascendingIcon = GD.Load<Texture2D>("res://Resources/Images/GUI/arrowButtonUp.png");
 		_descendingIcon = GD.Load<Texture2D>("res://Resources/Images/GUI/arrowButtonDown.png");
 
+		_label = GetNode<Label>("HBoxContainer/Label");
+		_icon = GetNode<TextureRect>("HBoxContainer/TextureRect");
+
 		Pressed += OnButtonPressed;
 	}
 
 	public void Setup(string buttonName)
 	{
-		Text = buttonName;
+		_label.Text = buttonName;
 	}
 
 	public void OnButtonPressed()
@@ -31,11 +36,11 @@ public partial class OrderButton : Button
 
 	public void SetAscending(bool ascending)
 	{
-		Icon = ascending ? _ascendingIcon : _descendingIcon;
+		_icon.Texture = ascending ? _ascendingIcon : _descendingIcon;
 	}
 
 	public void ClearIcon()
 	{
-		Icon = null;
+		_icon.Texture = null;
 	}
 }
