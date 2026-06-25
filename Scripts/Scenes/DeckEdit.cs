@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using System.Data.SQLite;
+using System;
+using System.Linq;
 
 public partial class DeckEdit : Control
 {
@@ -168,17 +170,53 @@ public partial class DeckEdit : Control
 
 	private void OnOrderChangeOnName(bool ascending)
 	{
-		GD.Print($"Order change on Name: {(ascending ? "Ascending" : "Descending")}");
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Name, StringComparer.OrdinalIgnoreCase)
+			: children.OrderByDescending(item => item.CardData.Name, StringComparer.OrdinalIgnoreCase);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
 	}
 
 	private void OnOrderChangeOnType(bool ascending)
 	{
-		GD.Print($"Order change on Type: {(ascending ? "Ascending" : "Descending")}");
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Type, StringComparer.OrdinalIgnoreCase)
+			: children.OrderByDescending(item => item.CardData.Type, StringComparer.OrdinalIgnoreCase);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
 	}
 
 	private void OnOrderChangeOnCost(bool ascending)
 	{
-		GD.Print($"Order change on Cost: {(ascending ? "Ascending" : "Descending")}");
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Cost)
+			: children.OrderByDescending(item => item.CardData.Cost);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
 	}
 
 	private void OnOrderChangeOnSkills(bool ascending)
@@ -188,6 +226,18 @@ public partial class DeckEdit : Control
 
 	private void OnOrderChangeOnLevel(bool ascending)
 	{
-		GD.Print($"Order change on Level: {(ascending ? "Ascending" : "Descending")}");
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Level)
+			: children.OrderByDescending(item => item.CardData.Level);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
 	}
 }

@@ -10,6 +10,8 @@ public partial class CardListItem : Button
 	public event Action HoverEnded;
 
 	private CardData _cardData;
+	public CardData CardData => _cardData;
+
 	private ulong _lastClickTime = 0;
 
 	private const string COLOR_GUARDIAN = "#004D7A";
