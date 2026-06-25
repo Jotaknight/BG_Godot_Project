@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using System.Data.SQLite;
+using System;
+using System.Linq;
 
 public partial class DeckEdit : Control
 {
@@ -28,9 +30,13 @@ public partial class DeckEdit : Control
 		AddChild(_currentPreview);
 		_currentPreview.Visible = false;
 
-		var cardListItemHeader = GD.Load<PackedScene>("res://GUI/DeckEditScene/CardListItemHeader.tscn");
-		var headerInstance = cardListItemHeader.Instantiate<CardListItemHeader>();
-		//headerInstance.Setup();
+		var _cardListItemHeader = GetNode<CardListItemHeader>("MarginContainer/PanelContainer/VBoxContainer/CardListHeader");
+
+		_cardListItemHeader.OrderChangeOnName += OnOrderChangeOnName;
+		_cardListItemHeader.OrderChangeOnType += OnOrderChangeOnType;
+		_cardListItemHeader.OrderChangeOnCost += OnOrderChangeOnCost;
+		_cardListItemHeader.OrderChangeOnSkills += OnOrderChangeOnSkills;
+		_cardListItemHeader.OrderChangeOnLevel += OnOrderChangeOnLevel;
 	}
 
 	private void LoadData()
@@ -162,4 +168,76 @@ public partial class DeckEdit : Control
 		_currentPreview.GlobalPosition = newPosition;
 	}
 
+	private void OnOrderChangeOnName(bool ascending)
+	{
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Name, StringComparer.OrdinalIgnoreCase)
+			: children.OrderByDescending(item => item.CardData.Name, StringComparer.OrdinalIgnoreCase);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
+	}
+
+	private void OnOrderChangeOnType(bool ascending)
+	{
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Type, StringComparer.OrdinalIgnoreCase)
+			: children.OrderByDescending(item => item.CardData.Type, StringComparer.OrdinalIgnoreCase);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
+	}
+
+	private void OnOrderChangeOnCost(bool ascending)
+	{
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Cost)
+			: children.OrderByDescending(item => item.CardData.Cost);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
+	}
+
+	private void OnOrderChangeOnSkills(bool ascending)
+	{
+		GD.Print($"Order change on Skills: {(ascending ? "Ascending" : "Descending")}");
+	}
+
+	private void OnOrderChangeOnLevel(bool ascending)
+	{
+		var children = _cardList.GetChildren()
+			.ToArray()
+			.Select(node => (CardListItem)node);
+
+		var items = ascending
+			? children.OrderBy(item => item.CardData.Level)
+			: children.OrderByDescending(item => item.CardData.Level);
+
+		int index = 0;
+		foreach (var item in items)
+		{
+			_cardList.MoveChild(item, index++);
+		}
+	}
 }

@@ -42,6 +42,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=308014917]
+visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1506180461]

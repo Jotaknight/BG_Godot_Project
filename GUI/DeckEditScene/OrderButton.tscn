@@ -2,16 +2,34 @@
 
 [ext_resource type="Script" uid="uid://u5p22nyuythv" path="res://Scripts/GUI/DeckEditScene/OrderButton.cs" id="1_a144p"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60lsj"]
+bg_color = Color(0.8627451, 0.8627451, 0.8627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tpks"]
+bg_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a144p"]
+bg_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
 [node name="OrderButton" type="Button" unique_id=2028674348]
+theme_override_styles/normal = SubResource("StyleBoxFlat_60lsj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5tpks")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a144p")
 script = ExtResource("1_a144p")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1953277589]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=647351184]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer" unique_id=201772969]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=611761251]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1281580144]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1230171269]
 layout_mode = 2
+stretch_mode = 3
