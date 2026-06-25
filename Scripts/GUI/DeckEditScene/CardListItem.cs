@@ -194,6 +194,10 @@ public partial class CardListItem : Button
 		{
 			var label = new Label();
 			label.Text = letter;
+			label.AddThemeColorOverride(
+				"font_color",
+				Colors.Black
+				);
 
 			_skillsContainer.AddChild(label);
 		}

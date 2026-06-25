@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bq15uola4xg5u" path="res://Scripts/GUI/DeckEditScene/CardListItem.cs" id="1_60lsj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rhno"]
-bg_color = Color(0.5, 0.5, 0.5, 1)
+bg_color = Color(0.96, 0.96, 0.96, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -58,10 +58,12 @@ layout_mode = 2
 [node name="Type" type="Label" parent="HBoxContainer" unique_id=834594042]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="Cost" type="Label" parent="HBoxContainer" unique_id=192146507]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="Skills" type="HBoxContainer" parent="HBoxContainer" unique_id=1265859560]
 custom_minimum_size = Vector2(40, 0)
@@ -70,3 +72,4 @@ layout_mode = 2
 [node name="Level" type="Label" parent="HBoxContainer" unique_id=1919905016]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
